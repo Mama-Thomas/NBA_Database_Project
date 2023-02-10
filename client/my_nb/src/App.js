@@ -14,6 +14,7 @@ import Coaches from "./pages/Coaches";
 import Teams from "./pages/Teams";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import './style.scss';
 
 const Layout = () => {
   return (
