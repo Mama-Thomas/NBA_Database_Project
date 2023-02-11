@@ -1,7 +1,19 @@
 $black : black;
-
+body {
+    background-color: rgba(119, 136, 153, 0.954);
+}
 .app{
+    // background-color: lightslategrey;
+    display:flex;
+    justify-content: center;
     .container{
+        // width: 1024px;
+        width: 100%;
+
+        .link{
+            text-decoration: none;
+            color:inherit
+        }
 
         //LOGIN & REGISTER
 
@@ -51,9 +63,74 @@ $black : black;
                 font-size:12px;
                 text-align: center;
             }
-
-
         }
-
     }
+     //NAVBAR
+    .navbar{
+        // background-color: red;
+        .container{
+            padding: 10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .logo{
+                img{
+                    width: 40px;
+                    height: 80px;
+                    padding: 10px;
+                }
+            }
+            .links{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                // font-size: 25px;
+            }
+
+            h6{
+                font-size: 16px;
+                font-weight: 300;
+            }
+            
+            span{
+                cursor: pointer;
+            }
+
+            .search{
+                background-color: rgba(43, 79, 224, 0.927);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 300;
+                border: 1px solid white;
+
+                &:hover {
+                    // width: 48px;
+                    // height: 48px;
+                    color:rgb(190, 44, 44);
+                    background-color: white;
+                    border: 1px solid rgb(190, 44, 44);
+                }
+            }
+        }
+    }
+     //FOOTER 
+        footer{
+            width: 100%;
+            margin-top: 100px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // background-color: rgba(43, 79, 224, 0.927);
+
+            img{
+                width: 40px;
+                height: 50px;
+                font-style: 12px;
+            }
+        }
 }

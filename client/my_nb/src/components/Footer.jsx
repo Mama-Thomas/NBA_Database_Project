@@ -1,8 +1,12 @@
 import React from 'react'
+import Logo from "../img/nba_logo.png";
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer>
+      <img src={Logo} alt="" />
+      <span> CSS 475 Database Project  </span>
+    </footer>
   )
 }
 
