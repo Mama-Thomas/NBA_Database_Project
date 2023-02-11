@@ -11,6 +11,7 @@ import Players from "./pages/Players";
 import Player from "./pages/Player";
 import GMs from "./pages/GMs";
 import Coaches from "./pages/Coaches";
+import Add from "./pages/Add";
 import Teams from "./pages/Teams";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/teams",
         element: <Teams />,
+      },
+      {
+        path: "/add",
+        element: <Add />,
       },
     ],
   },
