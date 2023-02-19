@@ -1,19 +1,18 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import Logo from '../img/nba_logo.png'
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../img/nba_logo.png";
 
 const Navbar = () => {
   return (
     <div className="navbar">
       <div className="container">
         <div className="logo">
-          <img src={Logo} alt="" />
+          <Link to="/">
+            <img src={Logo} alt="" />
+          </Link>
         </div>
         <div className="links">
-          <Link className="link" to="/login">
-            <h6>Login</h6>
-          </Link>
-          <Link className="link" to="/player">
+          <Link className="link" to="/players">
             <h6>Players</h6>
           </Link>
           <Link className="link" to="/teams">
@@ -28,13 +27,15 @@ const Navbar = () => {
           <Link className="link" to="/arenas">
             <h6>Arenas</h6>
           </Link>
+          <Link className="link" to="/stats">
+            <h6>Stats</h6>
+          </Link>
+          <Link className="link" to="/login">
+            <h6>Login</h6>
+          </Link>
 
-          <span>
-            {/* <h6>Mama</h6>
-           */}
-           Mama
-          </span>
-          <span>Logout</span>
+          {/* <span>Mama</span> */}
+          {/* <span>Logout</span> */}
           <span className="search">Search</span>
           {/* <Link className='link'>Teams</Link>
           <Link className='link'>GMs</Link>
@@ -43,6 +44,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

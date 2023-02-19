@@ -1,9 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const GMs = () => {
-  return (
-    <div>GMs</div>
-  )
-}
+  const [gms, setGms] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-export default GMs
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        fetch("/backend/gms/")
+          .then((resp) => resp.json())
+          .then((json) => {
+            console.log(json);
+            setGms(json);
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+  const filteredGms = gms.filter((team) =>
+    team.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(gms);
+
+  return (
+    <div className="players-list">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search general managers"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <table className="player-table">
+        <thead>
+          <tr>
+            <th>General Manager</th>
+            <th>Team</th>
+            <th>DIVISON</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredGms.map((gm) => (
+            <tr key={gm.id}>
+              <td className="player-img">
+                <Link className="link" to={`/gm/${gm.id}`}>
+                  <img src={gm.img} alt="" />
+                  {gm.name}
+                </Link>
+              </td>
+              <td>{gm.teamName}</td>
+              <td>{gm.division}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default GMs;
