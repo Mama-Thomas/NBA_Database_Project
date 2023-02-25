@@ -29,10 +29,10 @@ const GM = () => {
   return (
     <div class="player-container">
       <div class="player-header">
-        <img src={gm.img} alt="" />
+        <img src={gm.gm_img} alt="" />
         <div class="player-info">
-          <h1>{gm.name}</h1>
-          <h4>General Manager for The {gm.teamName}</h4>
+          <h1>{gm.gm_name}</h1>
+          <h4>General Manager for The {gm.team_name}</h4>
         </div>
       </div>
       <div class="player-stats">
@@ -40,14 +40,7 @@ const GM = () => {
           <h2>2021-22 TRADES MADE</h2>
         </div>
         <div>
-          {/* {trades.map((line, index) => (
-            <div key={index}>{line}</div>
-          ))} */}
-          {/* {trades}
-           */}
-          {/* {gm.trades_made}.split(";").map((trade, index) => (
-          <div key={index}>{trade}</div>
-          )) */}
+          
           {gm.trades_made?.split(";").map((trade, index) => (
             <div key={index}>
               <li>{trade}</li>

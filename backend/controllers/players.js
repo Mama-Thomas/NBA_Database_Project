@@ -39,7 +39,67 @@ export const getPlayer = (req, res) =>{
     });
 }
 export const addPlayer = (req, res) =>{
-    res.json("from controller")
+  const {
+    playerName,
+    country,
+    player_team_id,
+    height,
+    weight,
+    age,
+    position,
+    playerImg,
+    personalBio,
+    preBio,
+    profBio,
+    ppg,
+    rpg,
+    apg,
+    tpp,
+    fgp
+  } = req.body;
+
+  const playerSql =
+    "INSERT INTO players2 (playerName,country,player_team_id, height,weight,age,position,playerImg,personalBio, preBio,profBio) VALUES (?, ?, ?, ?, ?, ?,?,?,?,?,?)";
+
+  db.query(
+    playerSql,
+    [
+      playerName,
+      country,
+      player_team_id,
+      height,
+      weight,
+      age,
+      position,
+      playerImg,
+      personalBio,
+      preBio,
+      profBio,
+    ],
+    (err, result) => {
+      if (err) {
+        res.status(500).send("Error adding team to database.");
+      } else {
+        // retrieve the teamId of the newly inserted team
+        const player_id = result.insertId;
+
+        // insert the ofr into the stats table along with the teamId
+        const statsSql =
+          "INSERT INTO stats2 (ppg,rpg,apg,tpp,fgp,player_id) VALUES (?, ?,?,?,?,?)";
+        db.query(
+          statsSql,
+          [ppg,rpg,apg,tpp,fgp, player_id],
+          (err, result) => {
+            if (err) {
+              res.status(500).send("Error adding stats to database.");
+            } else {
+              res.status(200).send("Team and stats added to database.");
+            }
+          }
+        );
+      }
+    }
+  );
 }
 export const deletePlayer = (req, res) =>{
     res.json("from controller")
@@ -47,3 +107,19 @@ export const deletePlayer = (req, res) =>{
 export const updatePlayer = (req, res) =>{
     res.json("from controller")
 }
+
+//returns the player with the highest sum of (ppg+3%+fg%)
+export const topScorer = (req, res) => {
+  const q =
+    "SELECT players2.*, stats2.ppg,stats2.tpp,stats2.fgp,(stats2.ppg + stats2.tpp + stats2.fgp) AS total FROM players2 JOIN stats2 ON players2.pid = stats2.player_id ORDER BY total DESC LIMIT 1";
+
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.send(err);
+    }
+    
+
+    return res.status(200).json(data);
+  });
+};

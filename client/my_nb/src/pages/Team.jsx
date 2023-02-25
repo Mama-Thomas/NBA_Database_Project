@@ -64,6 +64,8 @@ const Team = () => {
             <tr>
               <th>Offensive Rating</th>
               <th>Defensive Rating</th>
+              <th>Wins</th>
+              <th>Loses</th>
               <th>No of Championships won</th>
             </tr>
           </thead>
@@ -71,6 +73,8 @@ const Team = () => {
             <tr>
               <td>{team.ofr}</td>
               <td>{team.dfr}</td>
+              <td>{team.wins}</td>
+              <td>{team.loses}</td>
               <td>{team.champs}</td>
             </tr>
           </tbody>

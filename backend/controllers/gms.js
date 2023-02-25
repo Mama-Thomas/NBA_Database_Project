@@ -3,7 +3,11 @@
 import { db } from "../db.js";
 
 export const getGMs = (req, res) => {
-  const q = "SELECT * FROM gms";
+  // const q = "SELECT * FROM gms";
+
+  const q =
+    "SELECT gms.*, teams.* FROM gms JOIN teams ON gms.gm_team_id = teams.id";
+
 
   db.query(q, (err, data) => {
     if (err) {
@@ -16,7 +20,9 @@ export const getGMs = (req, res) => {
 };
 export const getGM = (req, res) => {
   const gmId = req.params.id; // Get the gm ID from the request parameters
-  const q = "SELECT * FROM gms WHERE id = ?"; // Define the SQL query to retrieve the gm with the given ID
+  // const q = "SELECT * FROM gms WHERE id = ?"; // Define the SQL query to retrieve the gm with the given ID
+  const q =
+    "SELECT gms.*, teams.teamName AS team_name FROM gms JOIN teams ON gms.gm_team_id = teams.id WHERE gm_id = ?"; // Define the SQL query to retrieve the coach with the given ID
 
   db.query(q, [gmId], (err, data) => {
     if (err) {

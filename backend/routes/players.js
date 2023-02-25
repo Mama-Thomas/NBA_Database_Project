@@ -1,15 +1,24 @@
 //this is the route file for the player.js
 import express from "express";
-import {getPlayers,getPlayer,addPlayer,deletePlayer,updatePlayer} from "../controllers/players.js";
+import {
+  getPlayers,
+  getPlayer,
+  addPlayer,
+  deletePlayer,
+  updatePlayer,
+  topScorer,
+} from "../controllers/players.js";
 
 const router = express.Router();
 
 
 router.get("/",getPlayers)
+router.get("/topscorer", topScorer)//returns the player with the highest sum of (ppg+3%+fg%)
 router.get("/:id",getPlayer)
 router.post("/", addPlayer)
 router.delete("/:id",deletePlayer)
 router.put("/:id", updatePlayer);
+
 
 
 export default router;

@@ -20,8 +20,8 @@ const GMs = () => {
     };
     fetchData();
   }, []);
-  const filteredGms = gms.filter((team) =>
-    team.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredGms = gms.filter((gm) =>
+    gm.gm_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(gms);
 
@@ -47,9 +47,9 @@ const GMs = () => {
           {filteredGms.map((gm) => (
             <tr key={gm.id}>
               <td className="player-img">
-                <Link className="link" to={`/gm/${gm.id}`}>
-                  <img src={gm.img} alt="" />
-                  {gm.name}
+                <Link className="link" to={`/gm/${gm.gm_id}`}>
+                  <img src={gm.gm_img} alt="" />
+                  {gm.gm_name}
                 </Link>
               </td>
               <td>{gm.teamName}</td>

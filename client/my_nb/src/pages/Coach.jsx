@@ -26,9 +26,9 @@ const Coach = () => {
   return (
     <div class="player-container">
       <div class="player-header">
-        <img src={coach.img} alt="" />
+        <img src={coach.coach_img} alt="" />
         <div class="player-info">
-          <h1>{coach.name}</h1>
+          <h1>{coach.coach_name}</h1>
         </div>
       </div>
       <div class="player-stats">
@@ -36,7 +36,7 @@ const Coach = () => {
           <h2>Biography:</h2>
         </div>
         <div>
-          {coach.bio?.split(".").map((line, index) => (
+          {coach.coach_bio?.split(".").map((line, index) => (
           <div key={index}>
             {line}
             <p> </p>

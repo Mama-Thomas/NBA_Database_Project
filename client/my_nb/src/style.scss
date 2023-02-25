@@ -271,49 +271,8 @@ body {
         line-height: 30px;
       }
     }
-    //   .menu {
-    //     flex: 2;
-    //     display: flex;
-    //     flex-direction: column;
-    //     gap: 25px;
-
-    //     h1 {
-    //       font-size: 20px;
-    //       color: #555;
-    //     }
-
-    //     .post {
-    //       display: flex;
-    //       flex-direction: column;
-    //       gap: 10px;
-
-    //       img {
-    //         width: 100%;
-    //         height: 200px;
-    //         object-fit: cover;
-    //       }
-
-    //       h2 {
-    //         color: #555;
-    //       }
-
-    //       button {
-    //         width: max-content;
-    //         padding: 7.5px 15px;
-    //         border: none;
-    //         cursor: pointer;
-    //         color: teal;
-    //         background-color: white;
-    //         border: 1px solid teal;
-
-    //         &:hover {
-    //           border: 1px solid white;
-    //         //   background-color: $lightGreen;
-    //           color: black;
-    //         }
-    //       }
-    //     }
-    //   }
+    
+   
   }
 
   //ADD
@@ -610,5 +569,110 @@ table th {
   padding: 10px;
   // padding-right: 10px;
 
+}
+
+//ADD NEW ENTITY
+.add-entity {
+  max-width: 600px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+      outline: none;
+
+      &:focus {
+        border-color: #0077ff;
+      }
+    }
+
+    button[type="submit"] {
+      padding: 0.5rem;
+      background-color: #0077ff;
+      color: #fff;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0066cc;
+      }
+    }
+  }
+}
+//AWARDS PAGE
+// .awards-page {
+//   max-width: 800px;
+//   margin: 0 auto;
+//   padding: 20px;
+
+//   h1 {
+//     font-size: 36px;
+//     text-align: center;
+//     margin-bottom: 20px;
+//   }
+
+//   p {
+//     font-size: 24px;
+//     margin-bottom: 10px;
+//   }
+
+//   .award-type {
+//     font-weight: bold;
+//   }
+// }
+
+.awards-page {
+  font-size: 16px;
+  text-align: center;
+  padding: 40px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  .award-type {
+    font-weight: bold;
+  }
+
+  p {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .player-link {
+      color: #333;
+      text-decoration: none;
+      transition: all 0.2s;
+
+      &:hover {
+        color: #c82333;
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 }

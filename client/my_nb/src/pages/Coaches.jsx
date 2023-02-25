@@ -21,7 +21,7 @@ const Coaches = () => {
     fetchData();
   }, []);
   const filteredCoaches = coaches.filter((team) =>
-    team.name.toLowerCase().includes(searchTerm.toLowerCase())
+    team.coach_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(coaches);
 
@@ -47,8 +47,8 @@ const Coaches = () => {
           {filteredCoaches.map((coach) => (
             <tr key={coach.id}>
               <td className="player-img">
-                <Link className="link" to={`/coach/${coach.id}`}>
-                  <img src={coach.img} alt="" />
+                <Link className="link" to={`/coach/${coach.coach_id}`}>
+                  <img src={coach.coach_img} alt="" />
                   {coach.name}
                 </Link>
               </td>

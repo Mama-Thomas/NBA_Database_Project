@@ -3,157 +3,176 @@ import { useNavigate } from "react-router-dom";
 
 function AddTeam() {
   const navigate = useNavigate();
-  const [teamName, setTeamName] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [teamCode, setTeamCode] = useState("");
-  const [division, setDivision] = useState("");
-  const [img, setImg] = useState("");
-  const [ofr, setOfr] = useState("");
-  const [dfr, setDfr] = useState("");
-  const [records, setRecords] = useState("");
-  const [champs, setChamps] = useState("");
+
+  const [inputs, setInputs] = useState({
+    teamName: "",
+    country: "",
+    state: "",
+    teamCode: "",
+    division: "",
+    img: "",
+    ofr: "",
+    dfr: "",
+    records: "",
+    champs: "",
+    wins: "",
+    loses: "",
+  });
+
   const [err, setError] = useState(null);
 
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const newTeam = {
-      teamName,
-      state,
-      country,
-      teamCode,
-      division,
-      img,
-      ofr,
-      dfr,
-      champs,
-      records,
-    };
-    fetch("/backend/teams/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTeam),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        // Redirect to the team page for the newly added team
-        const newTeamId = data.id; // assuming the server returns the teamId
-        window.location.href(`/team/${newTeamId}`);
-        // navigate(`/team/${newTeamId}`);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    try {
+      const response = await fetch("/backend/teams/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
       });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData);
+      }
+      navigate("/teams");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div>
+    <div className="add-entity">
       <h1>Add a New Team</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Team Name:</label>
+          <label htmlFor="teamName"> Name:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="name"
-            value={teamName}
-            onChange={(event) => setTeamName(event.target.value)}
+            name="teamName"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="country">Team Country:</label>
+          <label htmlFor="country">Country:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="country"
-            value={country}
-            onChange={(event) => setCountry(event.target.value)}
+            name="country"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="state">Team State:</label>
+          <label htmlFor="state">State:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="state"
-            value={state}
-            onChange={(event) => setState(event.target.value)}
+            name="state"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="teamCode">Team Code:</label>
+          <label htmlFor="teamCode">Code:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="teamCode"
-            value={teamCode}
-            onChange={(event) => setTeamCode(event.target.value)}
+            name="teamCode"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="division">Team Division:</label>
+          <label htmlFor="division">Division:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="division"
-            value={division}
-            onChange={(event) => setDivision(event.target.value)}
+            name="division"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="img">Team Image:</label>
+          <label htmlFor="img">Image:</label>
           <input
+            required
+            placeholder="text"
             type="text"
-            id="img"
-            value={img}
-            onChange={(event) => setImg(event.target.value)}
+            name="img"
+            onChange={handleChange}
           />
         </div>
-        {/* <div>
-          <label htmlFor="img">Team Image:</label>
-          <input
-            type="text"
-            id="img"
-            value={img}
-            onChange={(event) => setImg(event.target.value)}
-          />
-        </div> */}
+
         <div>
-          <label htmlFor="ofr">Team Ofr:</label>
+          <label htmlFor="ofr">Ofr:</label>
           <input
+            required
+            placeholder="float"
             type="text"
-            id="ofr"
-            value={ofr}
-            onChange={(event) => setOfr(event.target.value)}
+            name="ofr"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="dfr">Team Dfr:</label>
+          <label htmlFor="dfr">Dfr:</label>
           <input
+            required
+            placeholder="float"
             type="text"
-            id="dfr"
-            value={dfr}
-            onChange={(event) => setDfr(event.target.value)}
+            name="dfr"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="champs">Team Total Championships:</label>
+          <label htmlFor="wins">Wins:</label>
           <input
+            required
+            placeholder="float"
             type="text"
-            id="champs"
-            value={champs}
-            onChange={(event) => setChamps(event.target.value)}
+            name="wins"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="loses">Loses:</label>
+          <input
+            required
+            placeholder="float"
+            type="text"
+            name="loses"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="champs"> Total Championships:</label>
+          <input
+            required
+            placeholder="int"
+            type="text"
+            name="champs"
+            onChange={handleChange}
           />
         </div>
         <div>
           <label htmlFor="records">Team Records:</label>
           <input
+            required
+            placeholder="text seperated by ' ; ' "
             type="text"
-            id="records"
-            value={records}
-            onChange={(event) => setRecords(event.target.value)}
+            name="records"
+            onChange={handleChange}
           />
         </div>
-        <button type="submit">Add Team</button>
+        <div className="button-grid">
+          <button type="submit">Add Team</button>
+        </div>
       </form>
     </div>
   );

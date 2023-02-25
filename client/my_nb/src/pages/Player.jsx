@@ -26,10 +26,10 @@ const { id } = useParams();
   console.log(player);
 
   return (
-    <div class="player-container">
-      <div class="player-header">
+    <div className="player-container">
+      <div className="player-header">
         <img src={player.playerImg} alt="Steven Adams" />
-        <div class="player-info">
+        <div className="player-info">
           <h1>{player.playerName}</h1>
           <p>
             {player.position}, {player.team_name}
@@ -41,8 +41,8 @@ const { id } = useParams();
           <p>Country: {player.country}</p>
         </div>
       </div>
-      <div class="player-stats">
-        <div class="stats-header">
+      <div className="player-stats">
+        <div className="stats-header">
           <h2>2021-22 Regular Season Stats</h2>
         </div>
         <table>
