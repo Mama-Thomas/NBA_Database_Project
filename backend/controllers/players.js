@@ -111,7 +111,7 @@ export const updatePlayer = (req, res) =>{
 //returns the player with the highest sum of (ppg+3%+fg%)
 export const topScorer = (req, res) => {
   const q =
-    "SELECT players2.*, stats2.ppg,stats2.tpp,stats2.fgp,(stats2.ppg + stats2.tpp + stats2.fgp) AS total FROM players2 JOIN stats2 ON players2.pid = stats2.player_id ORDER BY total DESC LIMIT 1";
+    "SELECT players2.*, stats2.ppg,stats2.tpp,stats2.fgp,ROUND(stats2.ppg + stats2.tpp + stats2.fgp, 2) AS total FROM players2 JOIN stats2 ON players2.pid = stats2.player_id ORDER BY total DESC LIMIT 1";
 
   db.query(q, (err, data) => {
     if (err) {
@@ -123,3 +123,4 @@ export const topScorer = (req, res) => {
     return res.status(200).json(data);
   });
 };
+

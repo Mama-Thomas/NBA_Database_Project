@@ -91,14 +91,14 @@ export const updateTeam = (req, res) => {
 }; */
 
 
-//returns the player with the highest ppg for each team by id.
+//returns the player with the highest ppg for the atlanta hawks.
 export const hppgPlayer = (req, res) => {
-   const teamId = req.params.id;
+  //  const teamId = 85;
 
   const q =
-    "SELECT players2.*, stats2.* , teams.* FROM players2 JOIN stats2 ON players2.pid = stats2.player_id JOIN teams ON players2.player_team_id = teams.id WHERE teams.id = ? ORDER BY stats2.ppg DESC LIMIT 1";
+    "SELECT players2.*, stats2.* , teams.* FROM players2 JOIN stats2 ON players2.pid = stats2.player_id JOIN teams ON players2.player_team_id = teams.id WHERE teams.id = 85 ORDER BY stats2.ppg DESC LIMIT 1";
 
-  db.query(q, [teamId], (err, data) => {
+  db.query(q, (err, data) => {
     if (err) {
       console.log(err);
       return res.send(err);

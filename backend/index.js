@@ -7,6 +7,8 @@ import gmsRoutes from "./routes/gms.js";
 import coachesRoutes from "./routes/coaches.js";
 import awardsRoutes from "./routes/awards.js";
 import arenasRoutes from "./routes/arenas.js";
+import searchRoutes from "./routes/search.js";
+
 
 
 const app = express()
@@ -20,6 +22,7 @@ app.use("/backend/gms", gmsRoutes);
 app.use("/backend/coaches", coachesRoutes);
 app.use("/backend/awards", awardsRoutes);
 app.use("/backend/arenas", arenasRoutes);
+app.use("/backend/search", searchRoutes);
 
 app.use((req, res, next) => {
     console.error(req);

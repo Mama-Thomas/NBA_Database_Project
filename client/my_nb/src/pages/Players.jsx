@@ -25,21 +25,6 @@ const Players = () => {
   );
   console.log(players);
 
-  // return (
-  //   <div className="player-table">
-  //     {players.map((player) => (
-  //       <div className="player-row" key={player.id}>
-  //         <div className="player-id">{player.id}</div>
-  //         <div className="player-name">{player.name}</div>
-  //         {/* <div className="player-img">
-  //           <img src={player.img} alt="" />
-  //         </div> */}
-  //         {/* <div className="player-bio">{player.personalBio}</div> */}
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
-
 
   return (
     <div className="players-list">
