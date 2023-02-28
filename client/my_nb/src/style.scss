@@ -1,6 +1,6 @@
 body {
-  background: #000;
-  color: whitesmoke;
+  // background: #000;
+  // color: whitesmoke;
 
   font-family: "Montserrat", sans-serif;
 }
@@ -91,7 +91,7 @@ body {
           font-size: 16px;
           font-weight: 300;
           &:hover {
-            color: whitesmoke;
+            color:  #17408b;
             box-shadow: 0px 0px 2px 2px #17408b;
           }
         }
@@ -101,10 +101,11 @@ body {
           height: 20px;
           cursor: pointer;
 
+
           ul {
             font-size: x-small;
             list-style-type: none;
-            background-color: rgba(245, 245, 245, 0.8);
+            background-color: grey;
             &:hover {
           color: #c82333;
           transform: scale(1.1);
@@ -116,10 +117,13 @@ body {
           }
 
           input[type="text"] {
+            color: white;
             padding: 5px 10px;
             font-size: 16px;
             border-radius: 5px;
             border: none;
+            background-color: grey;
+
           }
         }
       }
@@ -169,7 +173,7 @@ body {
 
         h1 {
           font-size: 1.2rem;
-          color: whitesmoke;
+          // color: whitesmoke;
           text-align: center;
           text-transform: uppercase;
         }
@@ -207,7 +211,7 @@ body {
               text-transform: uppercase;
 
               &:hover {
-                color: whitesmoke;
+                // color: whitesmoke;
                 border-bottom: 1px solid #17408b;
                 transform: scale(1.1);
               }
@@ -217,7 +221,7 @@ body {
           h3 {
             font-size: 1rem;
             font-weight: normal;
-            color: whitesmoke;
+            // color: whitesmoke;
             margin-left: 1rem;
 
             &:first-of-type {
@@ -365,7 +369,7 @@ body {
     .player-table td {
       padding: 16px;
       vertical-align: middle;
-      color: whitesmoke;
+      // color: whitesmoke;
       border-bottom: 1px solid #e6e6e6;
 
       // &:hover {

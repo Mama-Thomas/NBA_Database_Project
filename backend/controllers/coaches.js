@@ -3,7 +3,6 @@
 import { db } from "../db.js";
 
 export const getCoaches = (req, res) => {
-  // const q = "SELECT * FROM coaches";
   const q =
     "SELECT coaches.*, teams.* FROM coaches JOIN teams ON coaches.coach_team_id = teams.id";
 
@@ -28,11 +27,10 @@ export const getCoach = (req, res) => {
     }
 
     if (data.length === 0) {
-      // If no coach was found with the given ID, return a 404 error
       return res.status(404).json({ error: "coach not found" });
     }
 
-    return res.status(200).json(data[0]); // Return the first (and only) coach from the result set
+    return res.status(200).json(data[0]);
   });
 };
 export const addCoach = (req, res) => {

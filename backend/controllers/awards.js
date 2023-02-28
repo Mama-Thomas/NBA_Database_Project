@@ -3,10 +3,8 @@
 import { db } from "../db.js";
 
 export const getAwards = (req, res) => {
-  // const q = "SELECT * FROM Awards";
   const q =
     "SELECT awards.*, players2.* FROM awards LEFT JOIN players2 ON awards.award_player_id = players2.pid";
-  //   "SELECT players2.*, stats2.* FROM players2 LEFT JOIN stats2 ON players2.id = stats2.player_id";
 
   db.query(q, (err, data) => {
     if (err) {
@@ -19,7 +17,6 @@ export const getAwards = (req, res) => {
 };
 export const getAward = (req, res) => {
   const awardId = req.params.id; // Get the awards ID from the request parameters
-  // const q = "SELECT * FROM awardss WHERE id = ?"; // Define the SQL query to retrieve the player with the given ID
   const q =
     "SELECT awards.*, players2.*  FROM awards JOIN players2 ON players2.pid = awards.award_player_id  WHERE awards.id_awards = ?";
 

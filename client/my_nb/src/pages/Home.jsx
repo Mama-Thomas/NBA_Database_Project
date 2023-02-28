@@ -145,7 +145,7 @@ const Home = () => {
         {hOffrtTeams.map((team) => (
           <div className="section-item" key={team.id}>
             <div className="content">
-              <Link className="link" to={`/team/${team.pid}`}>
+              <Link className="link" to={`/team/${team.id}`}>
                 <img src={team.img} alt="" />
                 <h2>{team.teamName}</h2>
               </Link>

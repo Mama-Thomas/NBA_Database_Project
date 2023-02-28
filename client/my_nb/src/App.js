@@ -12,6 +12,7 @@ import Player from "./pages/Player";
 import AddPlayer from "./pages/addPages/AddPlayer";
 import Awards from "./pages/Awards";
 import Arenas from "./pages/Arenas";
+import Arena from "./pages/Arena";
 import AddArena from "./pages/addPages/AddArena";
 import Team from "./pages/Team";
 import AddTeam from "./pages/addPages/AddTeam";
@@ -75,14 +76,14 @@ const router = createBrowserRouter([
         path: "/coach/:id",
         element: <Coach />,
       },
-      {
-        path: "/addteam",
-        element: <AddTeam />,
-      },
-      {
-        path: "/addplayer",
-        element: <AddPlayer />,
-      },
+      // {
+      //   path: "/addteam",
+      //   element: <AddTeam />,
+      // },
+      // {
+      //   path: "/addplayer",
+      //   element: <AddPlayer />,
+      // },
       {
         path: "/awards",
         element: <Awards />,
@@ -92,8 +93,8 @@ const router = createBrowserRouter([
         element: <Arenas />,
       },
       {
-        path: "/addarena",
-        element: <AddArena />,
+        path: "/arena/:id",
+        element: <Arena />,
       },
     ],
   },

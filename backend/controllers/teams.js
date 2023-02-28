@@ -18,7 +18,6 @@ export const getTeams = (req, res) => {
 };
 export const getTeam = (req, res) => {
   const teamId = req.params.id; // Get the team ID from the request parameters
-  // const q = "SELECT * FROM teams WHERE id = ?"; // Define the SQL query to retrieve the team with the given ID
   const q =
     "SELECT teams.*, team_history.* FROM teams JOIN team_history ON teams.id = team_history.team_id WHERE teams.id = ?";
 
@@ -83,12 +82,7 @@ export const addTeam = (req, res) => {
     }
   );
 };
-/*export const deleteTeam = (req, res) => {
-  res.json("from controller");
-};
-export const updateTeam = (req, res) => {
-  res.json("from controller");
-}; */
+
 
 
 //returns the player with the highest ppg for the atlanta hawks.

@@ -28,7 +28,7 @@ const { id } = useParams();
   return (
     <div className="player-container">
       <div className="player-header">
-        <img src={player.playerImg} alt="Steven Adams" />
+        <img src={player.playerImg} alt="" />
         <div className="player-info">
           <h1>{player.playerName}</h1>
           <p>

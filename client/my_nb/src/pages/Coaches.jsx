@@ -49,7 +49,7 @@ const Coaches = () => {
               <td className="player-img">
                 <Link className="link" to={`/coach/${coach.coach_id}`}>
                   <img src={coach.coach_img} alt="" />
-                  {coach.name}
+                  {coach.coach_name}
                 </Link>
               </td>
               <td>{coach.teamName}</td>
