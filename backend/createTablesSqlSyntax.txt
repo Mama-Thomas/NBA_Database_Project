@@ -1,0 +1,120 @@
+//these are the mySQL syntax
+// to create the tables used in this program.
+
+NB: I used the KEY clause but it's not necessary.
+
+KEY clause is a good practice in MySQL if you plan 
+to query the table frequently and join it with other 
+tables using the team_id,etc columns.
+The KEY clause creates a non-unique index on the specified column, 
+which can improve 
+the performance of queries that filter or sort by that column.
+
+CREATE TABLE `teams` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `teamName` varchar(45) NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `division` varchar(45) NOT NULL,
+  `teamCode` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  `state` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`,`teamName`)
+);
+
+CREATE TABLE `team_history` (
+  `historyId` int NOT NULL AUTO_INCREMENT,
+  `ofr` float NOT NULL,
+  `dfr` float NOT NULL,
+  `records` varchar(45) DEFAULT NULL,
+  `champs` int DEFAULT NULL,
+  `team_id` int DEFAULT NULL,
+  `wins` int NOT NULL,
+  `loses` int NOT NULL,
+  PRIMARY KEY (`historyId`),
+  KEY `team_id_idx` (`team_id`),
+  CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`)
+);
+
+CREATE TABLE `team_history` (
+  `historyId` int NOT NULL AUTO_INCREMENT,
+  `ofr` float NOT NULL,
+  `dfr` float NOT NULL,
+  `records` varchar(45) DEFAULT NULL,
+  `champs` int DEFAULT NULL,
+  `team_id` int DEFAULT NULL,
+  `wins` int NOT NULL,
+  `loses` int NOT NULL,
+  PRIMARY KEY (`historyId`),
+  KEY `team_id_idx` (`team_id`),
+  CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`)
+);
+
+CREATE TABLE `stats2` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `player_id` int NOT NULL,
+  `ppg` float NOT NULL,
+  `apg` float NOT NULL,
+  `rpg` float NOT NULL,
+  `tpp` float NOT NULL,
+  `fgp` float NOT NULL,
+  `stl` float NOT NULL,
+  `blk` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `player_id_idx` (`player_id`),
+  CONSTRAINT `player_id` FOREIGN KEY (`player_id`) REFERENCES `players2` (`pid`)
+);
+
+
+CREATE TABLE `gms` (
+  `gm_id` int NOT NULL AUTO_INCREMENT,
+  `gm_team_id` int NOT NULL,
+  `gm_name` varchar(45) NOT NULL,
+  `gm_img` text,
+  `trades_made` text,
+  PRIMARY KEY (`gm_id`),
+  KEY `gm_team_id_idx` (`gm_team_id`),
+  CONSTRAINT `gm_team_id` FOREIGN KEY (`gm_team_id`) REFERENCES `teams` (`id`)
+);
+
+CREATE TABLE `coaches` (
+  `coach_id` int NOT NULL AUTO_INCREMENT,
+  `coach_name` varchar(45) NOT NULL,
+  `coach_age` int NOT NULL,
+  `coach_bio` text,
+  `coach_img` text,
+  `coach_team_id` int NOT NULL,
+  PRIMARY KEY (`coach_id`),
+  KEY `coach_team_id_idx` (`coach_team_id`),
+  CONSTRAINT `coach_team_id` FOREIGN KEY (`coach_team_id`) REFERENCES `teams` (`id`)
+);
+
+CREATE TABLE `awards` (
+  `id_awards` int NOT NULL AUTO_INCREMENT,
+  `award_type` varchar(45) NOT NULL,
+  `award_player_id` int NOT NULL,
+  PRIMARY KEY (`id_awards`),
+  KEY `award_player_id_idx` (`award_player_id`),
+  CONSTRAINT `award_player_id` FOREIGN KEY (`award_player_id`) REFERENCES `players2` (`pid`)
+);
+
+CREATE TABLE `arenas` (
+  `arena_Id` int NOT NULL AUTO_INCREMENT,
+  `arena_team_id` int NOT NULL,
+  `arena_name` varchar(45) NOT NULL,
+  `arena_img` text NOT NULL,
+  `location` varchar(60) NOT NULL,
+  `occupancy` int NOT NULL,
+  PRIMARY KEY (`arena_Id`,`arena_team_id`),
+  UNIQUE KEY `arena_name_UNIQUE` (`arena_name`),
+  KEY `team_id_idx` (`arena_team_id`),
+  CONSTRAINT `arena_team_id` FOREIGN KEY (`arena_team_id`) REFERENCES `teams` (`id`)
+);
+
+
+
+
+
+
+
+
+
