@@ -35,18 +35,21 @@ CREATE TABLE `team_history` (
   CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`)
 );
 
-CREATE TABLE `team_history` (
-  `historyId` int NOT NULL AUTO_INCREMENT,
-  `ofr` float NOT NULL,
-  `dfr` float NOT NULL,
-  `records` varchar(45) DEFAULT NULL,
-  `champs` int DEFAULT NULL,
-  `team_id` int DEFAULT NULL,
-  `wins` int NOT NULL,
-  `loses` int NOT NULL,
-  PRIMARY KEY (`historyId`),
-  KEY `team_id_idx` (`team_id`),
-  CONSTRAINT `team_id` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`)
+CREATE TABLE `players2` (
+  `pid` int NOT NULL AUTO_INCREMENT,
+  `playerName` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  `player_team_id` varchar(45) NOT NULL,
+  `height` varchar(45) NOT NULL,
+  `weight` float NOT NULL,
+  `age` int NOT NULL,
+  `position` varchar(45) NOT NULL,
+  `playerImg` varchar(255) NOT NULL,
+  `personalBio` text,
+  `profBio` text,
+  `preBio` text,
+  PRIMARY KEY (`pid`,`playerName`),
+  KEY `player_team_id_idx` (`player_team_id`)
 );
 
 CREATE TABLE `stats2` (
@@ -105,7 +108,6 @@ CREATE TABLE `arenas` (
   `location` varchar(60) NOT NULL,
   `occupancy` int NOT NULL,
   PRIMARY KEY (`arena_Id`,`arena_team_id`),
-  UNIQUE KEY `arena_name_UNIQUE` (`arena_name`),
   KEY `team_id_idx` (`arena_team_id`),
   CONSTRAINT `arena_team_id` FOREIGN KEY (`arena_team_id`) REFERENCES `teams` (`id`)
 );
