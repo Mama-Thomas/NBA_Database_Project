@@ -28,17 +28,16 @@ const { id } = useParams();
   return (
     <div className="player-container">
       <div className="player-header">
-        <img src={player.playerImg} alt="" />
         <div className="player-info">
-          <h1>{player.playerName}</h1>
+          <h1> {`${player.Fname} ${player.Lname}`}</h1>
           <p>
-            {player.position}, {player.team_name}
+            {player.position}, {player.tname}
           </p>
           <p>
             Age: {player.age} • Height: {player.height} • Weight:{" "}
-            {player.weight} lbs
+            {player.weight} lbs • Draft-Year: {player.draftYear} • Draft-Pick:{" "}
+            {player.draftPick} • Draft-Round: {player.draftRound}
           </p>
-          <p>Country: {player.country}</p>
         </div>
       </div>
       <div className="player-stats">
@@ -51,29 +50,24 @@ const { id } = useParams();
               <th>PPG</th>
               <th>RPG</th>
               <th>APG</th>
+              <th>SPG</th>
+              <th>BPG</th>
               <th>3P%</th>
               <th>FG%</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{player.ppg}</td>
-              <td>{player.rpg}</td>
-              <td>{player.apg}</td>
-              <td>{player.tpp}</td>
-              <td>{player.fgp}</td>
+              <td>{player.PPG}</td>
+              <td>{player.RPG}</td>
+              <td>{player.APG}</td>
+              <td>{player.SPG}</td>
+              <td>{player.BPG}</td>
+              <td>{player["3P%"]}</td>
+              <td>{player["FG%"]}</td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <div className="player-bio">
-        <h2>Biography</h2>
-        <h3>Personal life: </h3>
-        <p>{player.personalBio}</p>
-        <h3>Professional Career: </h3>
-        <p>{player.profBio}</p>
-        <h3>Pre NBA: </h3>
-        <p>{player.preBio}</p>
       </div>
     </div>
   );

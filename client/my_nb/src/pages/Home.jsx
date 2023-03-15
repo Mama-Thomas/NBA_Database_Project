@@ -6,7 +6,6 @@ const Home = () => {
   const [hOffrtTeams, setHOffrtTeams] = useState([]);
   const [hppgPlayer, setHppgPlayer] = useState([]);
   const [hiddenGemTopTeam, setHiddenGemTopTeam] = useState([]);
-  
 
   //the topScorer player
   useEffect(() => {

@@ -21,7 +21,7 @@ const Arenas = () => {
     fetchData();
   }, []);
   const filteredArenas = arenas.filter((arena) =>
-    arena.arena_name.toLowerCase().includes(searchTerm.toLowerCase())
+    arena.arenaName.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(arenas);
 
@@ -30,7 +30,7 @@ const Arenas = () => {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search coaches"
+          placeholder="Search Arenas"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -41,19 +41,24 @@ const Arenas = () => {
             <th>Arena</th>
             <th>Team</th>
             <th>DIVISON</th>
+            <th>OCCUPANCY</th>
+            <th>CITY</th>
+            <th>STATE</th>
           </tr>
         </thead>
         <tbody>
           {filteredArenas.map((arena) => (
             <tr key={arena.id}>
               <td className="player-img">
-                <Link className="link" to={`/arena/${arena.arena_Id}`}>
-                  <img src={arena.arena_img} alt="" />
-                  {arena.arena_name}
-                </Link>
+                <div className="link">
+                  {arena.arenaName}
+                </div>
               </td>
               <td>{arena.teamName}</td>
-              <td>{arena.division}</td>
+              <td>{arena.conference}</td>
+              <td>{arena.occupancy}</td>
+              <td>{arena.arenaCity}</td>
+              <td>{arena.arenaState}</td>
             </tr>
           ))}
         </tbody>

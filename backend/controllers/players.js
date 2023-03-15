@@ -4,8 +4,9 @@ import {db} from "../db.js";
 
 export const getPlayers = (req, res) =>{
     // const q = "SELECT * FROM players";
-    const q =
-      "SELECT players2.*, teams.* FROM players2 LEFT JOIN teams ON players2.player_team_id = teams.id";
+    const q = "SELECT * FROM PLAYER";
+
+      // "SELECT players2.*, teams.* FROM players2 LEFT JOIN teams ON players2.player_team_id = teams.id";
     //   "SELECT players2.*, stats2.* FROM players2 LEFT JOIN stats2 ON players2.id = stats2.player_id";
 
     db.query(q,(err,data) =>{
@@ -21,7 +22,7 @@ export const getPlayer = (req, res) =>{
     const playerId = req.params.id; // Get the player ID from the request parameters
     // const q = "SELECT * FROM players WHERE id = ?"; // Define the SQL query to retrieve the player with the given ID
   const q =
-    "SELECT players2.*, stats2.* , teams.teamName AS team_name FROM players2 JOIN stats2 ON players2.pid = stats2.player_id JOIN teams ON players2.player_team_id = teams.id WHERE players2.pid = ?";
+    "SELECT PLAYER.*, STAT.*  FROM PLAYER JOIN STAT ON PLAYER.playerId = STAT.statPlayerID  WHERE PLAYER.playerId = ?";
     
 
     db.query(q, [playerId], (err, data) => {
@@ -100,12 +101,6 @@ export const addPlayer = (req, res) =>{
       }
     }
   );
-}
-export const deletePlayer = (req, res) =>{
-    res.json("from controller")
-}
-export const updatePlayer = (req, res) =>{
-    res.json("from controller")
 }
 
 //returns the player with the highest sum of (ppg+3%+fg%)

@@ -41,31 +41,29 @@ const Teams = () => {
         <thead>
           <tr>
             <th>Team</th>
+            <th>Color</th>
             <th>Division</th>
-            <th>Offensive Rating</th>
-            <th>Deffensive Rating</th>
-            <th>State</th>
-            <th>Country</th>
-
-            
+            <th>Pace</th>
+            <th>Mascot</th>
+            <th>Coach</th>
+            <th>Manager</th>
           </tr>
         </thead>
         <tbody>
           {filteredTeams.map((team) => (
             <tr key={team.id}>
-
               <td className="player-img">
-                <Link className="link" to={`/team/${team.id}`}>
-                  <img src={team.img} alt="" />
+                <Link className="link" to={`/team/${team.teamName}`}>
                   {team.teamName}
                 </Link>
               </td>
-              <td>{team.division}</td>
-              <td>{team.ofr}</td>
-              <td>{team.dfr}</td>
-              <td>{team.state}</td>
-              <td>{team.country}</td>
-              
+
+              <td>{team.primaryColor}</td>
+              <td>{team.conference}</td>
+              <td>{team.pace}</td>
+              <td>{team.mascot}</td>
+              <td>{`${team.coachFname} ${team.coachLname}`}</td>
+              <td>{`${team.gmFname} ${team.gmLname}`}</td>
             </tr>
           ))}
         </tbody>

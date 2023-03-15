@@ -3,9 +3,10 @@
 import { db } from "../db.js";
 
 export const getTeams = (req, res) => {
-  // const q = "SELECT * FROM teams";
-  const q =
-    "SELECT teams.*, team_history.* FROM teams LEFT JOIN team_history ON teams.id = team_history.team_id";
+     const q =
+      "SELECT TEAM.*, MANAGER.*,COACH.*  FROM TEAM JOIN MANAGER ON TEAM.teamManager = MANAGER.gmId JOIN COACH ON TEAM.teamCoach = COACH.coachId  ";
+
+  
 
   db.query(q, (err, data) => {
     if (err) {
@@ -19,7 +20,7 @@ export const getTeams = (req, res) => {
 export const getTeam = (req, res) => {
   const teamId = req.params.id; // Get the team ID from the request parameters
   const q =
-    "SELECT teams.*, team_history.* FROM teams JOIN team_history ON teams.id = team_history.team_id WHERE teams.id = ?";
+    "SELECT TEAM.*, RECORD.*  FROM TEAM JOIN RECORD ON TEAM.teamName = RECORD.teamRecord  WHERE TEAM.teamName = ?";
 
   db.query(q, [teamId], (err, data) => {
     if (err) {
@@ -28,7 +29,7 @@ export const getTeam = (req, res) => {
     }
 
     if (data.length === 0) {
-      // If no player was found with the given ID, return a 404 error
+      // If no team was found with the given ID, return a 404 error
       return res.status(404).json({ error: "Team not found" });
     }
 
@@ -36,10 +37,10 @@ export const getTeam = (req, res) => {
   });
 };
 export const getTeamPlayers = (req, res) => {
-  const teamId = req.params.id;
-  const q = "SELECT * FROM players2 WHERE player_team_id = ?";
+  const teamName = req.params.name;
+  const q = "SELECT * FROM PLAYER WHERE tname = ?";
 
-  db.query(q, [teamId], (err, data) => {
+  db.query(q, [teamName], (err, data) => {
     if (err) {
       console.log(err);
       return res.send(err);
@@ -48,41 +49,6 @@ export const getTeamPlayers = (req, res) => {
     return res.status(200).json(data);
   });
 };
-export const addTeam = (req, res) => {
-  const { teamName, img, division, teamCode, state, country, ofr, dfr,wins,loses, champs, records } = req.body;
-
-  const teamSql =
-    "INSERT INTO teams (teamName, img, division, teamCode,country,state) VALUES (?, ?, ?, ?, ?, ?)";
-
-  db.query(
-    teamSql,
-    [teamName, img, division, teamCode, country, state],
-    (err, result) => {
-      if (err) {
-        res.status(500).send("Error adding team to database.");
-      } else {
-        // retrieve the teamId of the newly inserted team
-        const team_id = result.insertId;
-
-        // insert the ofr into the stats table along with the teamId
-        const historySql =
-          "INSERT INTO team_history (ofr, dfr,records, champs,wins,loses,team_id) VALUES (?, ?, ?,?,?,?,?)";
-        db.query(
-          historySql,
-          [ofr, dfr, records, champs,wins,loses, team_id],
-          (err, result) => {
-            if (err) {
-              res.status(500).send("Error adding stats to database.");
-            } else {
-              res.status(200).send("Team and stats added to database.");
-            }
-          }
-        );
-      }
-    }
-  );
-};
-
 
 
 //returns the player with the highest ppg for the atlanta hawks.

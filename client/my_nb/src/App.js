@@ -1,25 +1,17 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
 } from "react-router-dom";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+
 import Home from "./pages/Home";
 import Players from "./pages/Players";
 import Player from "./pages/Player";
-import AddPlayer from "./pages/addPages/AddPlayer";
 import Awards from "./pages/Awards";
 import Arenas from "./pages/Arenas";
-import Arena from "./pages/Arena";
-import AddArena from "./pages/addPages/AddArena";
 import Team from "./pages/Team";
-import AddTeam from "./pages/addPages/AddTeam";
 import GMs from "./pages/GMs";
-import GM from "./pages/GM";
 import Coaches from "./pages/Coaches";
-import Coach from "./pages/Coach";
 import Teams from "./pages/Teams";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -53,7 +45,7 @@ const router = createBrowserRouter([
         element: <Player />,
       },
       {
-        path: "/team/:id",
+        path: "/team/:name",
         element: <Team />,
       },
       {
@@ -64,26 +56,13 @@ const router = createBrowserRouter([
         path: "/gms",
         element: <GMs />,
       },
-      {
-        path: "/gm/:id",
-        element: <GM />,
-      },
+      
       {
         path: "/coaches",
         element: <Coaches />,
       },
-      {
-        path: "/coach/:id",
-        element: <Coach />,
-      },
-      // {
-      //   path: "/addteam",
-      //   element: <AddTeam />,
-      // },
-      // {
-      //   path: "/addplayer",
-      //   element: <AddPlayer />,
-      // },
+      
+      
       {
         path: "/awards",
         element: <Awards />,
@@ -92,20 +71,10 @@ const router = createBrowserRouter([
         path: "/arenas",
         element: <Arenas />,
       },
-      {
-        path: "/arena/:id",
-        element: <Arena />,
-      },
+      
     ],
   },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
+  
 ]);
 
 function App() {

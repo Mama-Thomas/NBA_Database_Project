@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const GMs = () => {
   const [gms, setGms] = useState([]);
@@ -21,7 +20,7 @@ const GMs = () => {
     fetchData();
   }, []);
   const filteredGms = gms.filter((gm) =>
-    gm.gm_name.toLowerCase().includes(searchTerm.toLowerCase())
+    gm.gmFname.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(gms);
 
@@ -39,21 +38,22 @@ const GMs = () => {
         <thead>
           <tr>
             <th>General Manager</th>
+            <th>AGE</th>
             <th>Team</th>
             <th>DIVISON</th>
+            <th>YEARS OF EXPERIENCE</th>
           </tr>
         </thead>
         <tbody>
           {filteredGms.map((gm) => (
-            <tr key={gm.id}>
+            <tr key={gm.gmId}>
               <td className="player-img">
-                <Link className="link" to={`/gm/${gm.gm_id}`}>
-                  <img src={gm.gm_img} alt="" />
-                  {gm.gm_name}
-                </Link>
+                <div className="link">{`${gm.gmFname} ${gm.gmLname}`}</div>
               </td>
+              <td>{gm.age}</td>
               <td>{gm.teamName}</td>
-              <td>{gm.division}</td>
+              <td>{gm.conference}</td>
+              <td>{gm.experienceinRole}</td>
             </tr>
           ))}
         </tbody>

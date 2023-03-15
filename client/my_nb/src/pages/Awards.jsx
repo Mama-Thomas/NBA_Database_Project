@@ -1,59 +1,59 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const Awards = () => {
-  const [awards, setAwards] = useState({});
+  const [awards, setAwards] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/backend/awards/");
-        const data = await response.json();
-        setAwards(
-          data.reduce(
-            (acc, award) => ({ ...acc, [award.award_type]: [award.playerName, award.pid] }),
-            {}
-          )
-        );
+        fetch("/backend/awards/")
+          .then((resp) => resp.json())
+          .then((json) => {
+            console.log(json);
+            setAwards(json);
+          });
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
-
-  console.log(awards)
+  const filteredAwards = awards.filter((award) =>
+    award.awardName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(awards);
 
   return (
-    <div className="awards-page">
-      <h1>Award Winners For 2021-2022</h1>
-      <p>
-        <span className="award-type"> Most Valuable Player:</span>{" "}
-        <Link className="player-link" to={`/player/${awards["mvp"]?.[1]}`}>{awards["mvp"]?.[0]}</Link>
-      </p>
-      <p>
-        <span className="award-type">Defensive Player of the Year:</span>{" "}
-        <Link className="player-link" to={`/player/${awards["defensive"]?.[1]}`}>
-          {awards["defensive"]?.[0]}
-        </Link>
-      </p>
-      <p>
-        <span className="award-type">Rookie of the Year:</span>{" "}
-        <Link className="player-link" to={`/player/${awards["rookie"]?.[1]}`}>{awards["rookie"]?.[0]}</Link>
-      </p>
-      <p>
-        <span className="award-type">Sixth Man of the Year:</span>{" "}
-        <Link className="player-link" to={`/player/${awards["sixthMan"]?.[1]}`}>{awards["sixthMan"]?.[0]}</Link>
-      </p>
-      <p>
-        <span className="award-type">Most Improved Player:</span>{" "}
-        <Link className="player-link" to={`/player/${awards["mip"]?.[1]}`}>{awards["mip"]?.[0]}</Link>
-      </p>
-      <p>
-        <span className="award-type">Sportsmanship Award:</span>
-        <Link className="player-link" to={`/player/${awards["sms"]?.[1]}`}>{awards["sms"]?.[0]}</Link>
-      </p>
+    <div className="players-list">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search awards"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <table className="player-table">
+        <thead>
+          <tr>
+            <th>Awarded Player</th>
+            <th>AWARD</th>
+            <th>AWARD YEAR</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredAwards.map((award) => (
+            <tr key={award.awardId}>
+              <td>{`${award.Fname} ${award.Lname}`}</td>
+              <td>{award.awardName}</td>
+              <td>{award.awardYear}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
+
 export default Awards;

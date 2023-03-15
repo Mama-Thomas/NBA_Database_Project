@@ -21,7 +21,7 @@ const Players = () => {
     fetchData();
   }, []);
   const filteredPlayers = players.filter((player) =>
-    player.playerName.toLowerCase().includes(searchTerm.toLowerCase())
+    player.Fname.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(players);
 
@@ -45,26 +45,26 @@ const Players = () => {
             <th>POSITION</th>
             <th>WEIGHT</th>
             <th>HEIGHT</th>
-            <th>COUNTRY</th>
+            <th>Age</th>
           </tr>
         </thead>
         <tbody>
           {filteredPlayers.map((player) => (
-            <tr key={player.id}>
+            <tr key={player.playerId}>
               {/* <td>{player.id}</td> */}
-              
-                <td className="player-img">
-                  <Link className="link"  to={`/player/${player.pid}`}>
-                  <img src={player.playerImg} alt="" />
-                  {player.playerName}
-                  </Link>
-                </td>
-                <td>{player.teamCode}</td>
-                <td>{player.position}</td>
-                <td>{player.weight} lbs</td>
-                <td>{player.height}</td>
-                <td>{player.country}</td>
-               
+
+              <td className="player-img">
+                <Link className="link" to={`/player/${player.playerId}`}>
+                  <p>{player.Fname}</p>
+                  <p>{player.Lname}</p>
+                  {/* {`${player.Fname}${player.Lname}`} */}
+                </Link>
+              </td>
+              <td>{player.tname}</td>
+              <td>{player.position}</td>
+              <td>{player.weight} lbs</td>
+              <td>{player.height}</td>
+              <td>{player.age}</td>
             </tr>
           ))}
         </tbody>

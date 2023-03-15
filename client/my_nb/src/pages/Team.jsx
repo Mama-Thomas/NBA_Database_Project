@@ -4,14 +4,14 @@ import { Link, useParams } from "react-router-dom";
 const Team = () => {
   const [team, setTeam] = useState([]);
   const [teamPlayers, setTeamPlayers] = useState([]);
-  const { id } = useParams();
+  const { name } = useParams();
   // const teamId = 1;
 
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        fetch(`/backend/teams/${id}`)
+        fetch(`/backend/teams/${name}`)
           .then((resp) => resp.json())
           .then((json) => {
             console.log(json);
@@ -22,14 +22,14 @@ const Team = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [name]);
 
   console.log(team);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        fetch(`/backend/teams/${id}/players`)
+        fetch(`/backend/teams/${name}/players`)
           .then((resp) => resp.json())
           .then((json) => {
             console.log(json);
@@ -40,42 +40,44 @@ const Team = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [name]);
 
   console.log(teamPlayers);
   
   return (
     <div className="player-container">
       <div className="player-header">
-        <img src={team.img} alt="" />
         <div className="player-info">
           <h1>{team.teamName}</h1>
-          <p>
-            {team.state},{team.country}
-          </p>
         </div>
       </div>
       <div className="player-stats">
         <div className="stats-header">
-          <h2>2021-22 Regular Season Stats</h2>
+          <h2>2022-23 Regular Season Records</h2>
         </div>
         <table>
           <thead>
             <tr>
+              <th>Standing</th>
               <th>Offensive Rating</th>
               <th>Defensive Rating</th>
-              <th>Wins</th>
-              <th>Loses</th>
+              <th>Home Wins</th>
+              <th>Home Loses</th>
+              <th>Away Wins</th>
+              <th>Away Loses</th>
               <th>No of Championships won</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{team.ofr}</td>
-              <td>{team.dfr}</td>
-              <td>{team.wins}</td>
-              <td>{team.loses}</td>
-              <td>{team.champs}</td>
+              <td>{team.standing}</td>
+              <td>{team.offRtg}</td>
+              <td>{team.defRtg}</td>
+              <td>{team.homeWins}</td>
+              <td>{team.homeLosses}</td>
+              <td>{team.awayWins}</td>
+              <td>{team.awayLosses}</td>
+              <td>{team.champ_won}</td>
             </tr>
           </tbody>
         </table>
@@ -105,9 +107,8 @@ const Team = () => {
               <tr>
                 <th>Player</th>
                 <th>POSITION</th>
-                <th>WEIGHT</th>
-                <th>HEIGHT</th>
-                <th>COUNTRY</th>
+                <th>AGE</th>
+                <th>DRAFT YEAR</th>
               </tr>
             </thead>
             <tbody>
@@ -116,15 +117,13 @@ const Team = () => {
                   {/* <td>{player.id}</td> */}
 
                   <td className="player-img">
-                    <Link className="link" to={`/player/${player.pid}`}>
-                      <img src={player.playerImg} alt="" />
-                      {player.playerName}
+                    <Link className="link" to={`/player/${player.playerId}`}>
+                      {`${player.Fname} ${player.Lname}`}
                     </Link>
                   </td>
                   <td>{player.position}</td>
-                  <td>{player.weight} lbs</td>
-                  <td>{player.height}</td>
-                  <td>{player.country}</td>
+                  <td>{player.age} lbs</td>
+                  <td>{player.draftYear}</td>
                 </tr>
               ))}
             </tbody>

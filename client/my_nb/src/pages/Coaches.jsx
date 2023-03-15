@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 const Coaches = () => {
   const [coaches, setCoaches] = useState([]);
@@ -21,7 +20,7 @@ const Coaches = () => {
     fetchData();
   }, []);
   const filteredCoaches = coaches.filter((team) =>
-    team.coach_name.toLowerCase().includes(searchTerm.toLowerCase())
+    team.coachFname.toLowerCase().includes(searchTerm.toLowerCase())
   );
   console.log(coaches);
 
@@ -38,22 +37,27 @@ const Coaches = () => {
       <table className="player-table">
         <thead>
           <tr>
-            <th>General Manager</th>
+            <th>Coach</th>
             <th>Team</th>
             <th>DIVISON</th>
+            <th>AGE</th>
+            <th>YEARS OF EXPERIENCE</th>
+            <th>WIN %</th>
           </tr>
         </thead>
         <tbody>
           {filteredCoaches.map((coach) => (
             <tr key={coach.id}>
               <td className="player-img">
-                <Link className="link" to={`/coach/${coach.coach_id}`}>
-                  <img src={coach.coach_img} alt="" />
-                  {coach.coach_name}
-                </Link>
+                <div  className="link" >
+                  {`${coach.coachFname} ${coach.coachLname}`}
+                </div>
               </td>
               <td>{coach.teamName}</td>
-              <td>{coach.division}</td>
+              <td>{coach.conference}</td>
+              <td>{coach.age}</td>
+              <td>{coach.experience}</td>
+              <td>{coach["win%"]}</td>
             </tr>
           ))}
         </tbody>
